@@ -1,5 +1,5 @@
 ---
-title: Are Batman movies darker?
+title: Are Batman movies darker than they used to be?
 author: Thais Baracat
 date: '2022-04-08'
 slug: []
@@ -116,4 +116,4 @@ graf_sent
 ```
 
 
-Chegamos até aqui - next? TESTE
+Chegamos até aqui.
