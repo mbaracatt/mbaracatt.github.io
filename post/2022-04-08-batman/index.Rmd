@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo=FALSE, error=FALSE, warning=FALSE, message=FALSE)
 
 *By Thais Baracat. April 8, 2022.* <p>
 
-> Was it just me or the new Batman movie was darker than Christopher Nolan trilogy?
+> Was it just me or the Batman movies are becoming darker?
 
 ```{r}
 #Libraries
