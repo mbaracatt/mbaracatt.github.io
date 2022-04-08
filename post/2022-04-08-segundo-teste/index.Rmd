@@ -1,0 +1,12 @@
+---
+title: Segundo teste
+author: Thais Baracat
+date: '2022-04-08'
+slug: []
+categories:
+  - R
+tags:
+  - R Markdown
+---
+
+Oi Billy
