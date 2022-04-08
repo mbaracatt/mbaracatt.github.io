@@ -1,0 +1,120 @@
+---
+title: Are Batman movies darker?
+author: Thais Baracat
+date: '2022-04-08'
+slug: []
+categories:
+  - R
+tags:
+  - R Markdown
+  - film
+  - sentiment
+image: img/portfolio/batman.jpg
+showonlyimage: false
+weight: 0
+---
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE, error=FALSE, warning=FALSE, message=FALSE)
+```
+
+*By Thais Baracat. April 8, 2022.* <p>
+
+> Was it just me or the new Batman movie was darker than Christopher Nolan trilogy?
+
+```{r}
+#Libraries
+library("tidyverse")
+library("tidylog")
+library("tidytext")
+library("plotly")
+```
+
+```{r}
+#Função
+
+sentimento <-function(x){
+  names(x) <- c("phrase")
+  resultado <- x %>% 
+    mutate(tempo = str_detect(phrase, "-->")) %>% 
+    filter(tempo != TRUE) %>% 
+    select(-2) %>% 
+    unnest_tokens(word, phrase) %>%
+    anti_join(stopwords, by="word") %>% 
+    inner_join(get_sentiments("afinn")) %>%
+    summarize(sentiment=mean(value, na.rm=T))
+  return(resultado)
+}
+
+```
+
+```{r}
+#Carregando stopwords
+stopwords <- get_stopwords(language="en")
+```
+
+```{r}
+#Abrindo os dados do IMDB
+imdb <- read_delim("imdb.txt",
+                   delim = ";",
+                   locale = locale(decimal_mark=",",grouping_mark="."))
+```
+
+```{r}
+#Importando texto
+
+batman_66 <- read.delim("batman_66.txt")
+
+batman_89 <- read.delim("batman_89.txt", fileEncoding = "utf16")
+
+batman_92 <- read.delim ("batman_92.txt")
+
+batman_95 <- read.delim("batman_95.txt")
+
+batman_97 <- read.delim("batman_97.txt")
+
+batman_05 <- read.delim("batman_05.txt")
+
+batman_08 <- read.delim("batman_08.txt")
+
+batman_12 <- read.delim("batman_12.txt")
+
+batman_22 <- read.delim("batman_22.txt")
+```
+
+```{r}
+#Sentimento
+
+bd <- c("batman_66", "batman_89", "batman_92", "batman_95", "batman_97", "batman_05", "batman_08", "batman_12", "batman_22")
+sent <- c(sentimento(batman_66), sentimento(batman_89), sentimento(batman_92), sentimento(batman_95), sentimento(batman_97), sentimento(batman_05), sentimento(batman_08), sentimento(batman_12), sentimento(batman_22))
+
+sent <- sent %>% as.numeric()
+
+sentimentos <- tibble(bd,sent)
+```
+
+```{r}
+#Juntando bancos de dados
+imdb <- imdb %>% inner_join(sentimentos, by="bd")
+```
+
+```{r}
+#Gerando grafico
+graf_sent <- imdb %>%
+  ggplot()+
+  geom_hline(yintercept=0, lty=2, color="gray")+
+  geom_line(aes(x=year,y=sent)) +
+  geom_point(aes(x=year,y=sent)) +
+  xlab("Year") +
+  ylab("Sentiment") +
+  scale_x_continuous(breaks = seq(1965, 2025, 5), lim = c(1965, 2025))+
+  theme_classic()
+```
+
+```{r}
+#Imprimindo gráfico
+graf_sent %>% 
+  ggplotly()
+```
+
+
+Chegamos até aqui - next? TESTE
