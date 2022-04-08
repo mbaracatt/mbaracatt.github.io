@@ -6,7 +6,7 @@
     <description>Recent content in R on THAIS BARACAT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate><atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Oi Tata</title>
       <link>/post/2020-12-01-r-rmarkdown/</link>
@@ -15,6 +15,15 @@
       <guid>/post/2020-12-01-r-rmarkdown/</guid>
       <description>TataOi Tata!!
 </description>
+    </item>
+    
+    <item>
+      <title>Segundo teste</title>
+      <link>/post/2022-04-08-segundo-teste/</link>
+      <pubDate>Fri, 08 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022-04-08-segundo-teste/</guid>
+      <description>Oi Billy</description>
     </item>
     
   </channel>
