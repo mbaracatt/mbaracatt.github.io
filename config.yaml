@@ -1,0 +1,28 @@
+baseurl: /
+title: THAIS BARACAT
+theme: hugo-creative-portfolio-theme
+languageCode: en-us
+disqusShortname: ''
+googleAnalytics: ''
+params:
+  copyright: '&copy;2022 Thais Baracat'
+  description: Fun data analytics
+  email: mbaracatt@gmail.com
+  navlinks:
+    - home: yes
+      name: Home
+      url: post/
+    - name: About
+      url: about/
+    - name: Get in touch
+      url: contact/
+  sidebarAbout:
+    - I am just an engineer who loves music, cinema and arts.
+    - Currently based in São Paulo, Brazil.
+  social:
+    email: mbaracatt@gmail.com
+    github: https://github.com/mbaracatt
+    instagram: https://www.instagram.com/thaisbaracat/
+    linkedin: https://www.linkedin.com/in/thais-malta-baracat-2584a4127/
+  style: blue
+  
