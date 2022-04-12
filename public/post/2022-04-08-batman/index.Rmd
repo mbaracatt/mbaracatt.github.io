@@ -10,16 +10,12 @@ tags:
   - film
   - sentiment
 image: img/portfolio/batman.jpg
-showonlyimage: false
+showonlyimage: true
 weight: 0
 ---
 ```{r, echo=FALSE}
 knitr::opts_chunk$set(echo=FALSE, error=FALSE, warning=FALSE, message=FALSE)
 ```
-
-*By Thais Baracat. April 8, 2022.* <p>
-
-> Was it just me or the Batman movies are becoming darker?
 
 ```{r}
 #Libraries
@@ -29,19 +25,52 @@ library("tidytext")
 library("plotly")
 ```
 
+*By Thais Baracat. April 8, 2022.* <p>
+
+We can all agree that Batman is the darkest superhero of them all. But after watching the brand-new batman movie, starring Robert Pattinson and Zöe Kravitz, I caught myself thinking if the franchise movies were getting emotionally darker - or was it just the noir aesthetics? In order to find out, I have selected a collection of batman movies and proceeded with a sentiment analysis of the dialogues held in each film. 
+
+#### Sentiment Analysis
+The sentiment analysisis a technique used to determine how positive or negative a speech is. This tool analyses each word especifically, and provides a value for it. Values below zero demonstrates that the word is associated to a negative context, whereas positive values are seen in positive context. The magnitude for each word was obtained from the [Affin lexicon].
+
+Example of words:
+
+1. Breathtaking, positive, magnitude +5
+
+2. Catatrophic, negative, magnitude -4.
+
+#### Data
+For this analysis, the collection of films considered were:
+
+* Batman, 1966
+* Batman, 1989
+* Batman Returns, 1992
+* Batman Forever, 1995
+* Batman & Robin, 1997
+* Batman Begins, 2005
+* The Dark Knight, 2008
+* The Dark Knight Rises, 2012
+* The Batman, 2022
+
+This post counted on the subtitles available in https://yts-subs.com/.
+
 ```{r}
 #Função
 
-sentimento <-function(x){
+tratamento <- function(x){
   names(x) <- c("phrase")
-  resultado <- x %>% 
+  x <- x %>% 
     mutate(tempo = str_detect(phrase, "-->")) %>% 
     filter(tempo != TRUE) %>% 
     select(-2) %>% 
     unnest_tokens(word, phrase) %>%
     anti_join(stopwords, by="word") %>% 
-    inner_join(get_sentiments("afinn")) %>%
+    inner_join(get_sentiments("afinn"))
+}
+
+sentimento <-function(x){
+  resultado <- x %>%
     summarize(sentiment=mean(value, na.rm=T))
+  
   return(resultado)
 }
 
@@ -62,23 +91,23 @@ imdb <- read_delim("imdb.txt",
 ```{r}
 #Importando texto
 
-batman_66 <- read.delim("batman_66.txt")
+batman_66 <- tratamento(read.delim("batman_66.txt")) %>% mutate(bd = "batman_66")
 
-batman_89 <- read.delim("batman_89.txt", fileEncoding = "utf16")
+batman_89 <- tratamento(read.delim("batman_89.txt", fileEncoding = "utf16")) %>% mutate(bd = "batman_89")
 
-batman_92 <- read.delim ("batman_92.txt")
+batman_92 <- tratamento(read.delim ("batman_92.txt")) %>% mutate(bd = "batman_92")
 
-batman_95 <- read.delim("batman_95.txt")
+batman_95 <- tratamento(read.delim("batman_95.txt")) %>% mutate(bd = "batman_95")
 
-batman_97 <- read.delim("batman_97.txt")
+batman_97 <- tratamento(read.delim("batman_97.txt")) %>% mutate(bd = "batman_97")
 
-batman_05 <- read.delim("batman_05.txt")
+batman_05 <- tratamento(read.delim("batman_05.txt")) %>% mutate(bd = "batman_05")
 
-batman_08 <- read.delim("batman_08.txt")
+batman_08 <- tratamento(read.delim("batman_08.txt")) %>% mutate(bd = "batman_08")
 
-batman_12 <- read.delim("batman_12.txt")
+batman_12 <- tratamento(read.delim("batman_12.txt")) %>% mutate(bd = "batman_12")
 
-batman_22 <- read.delim("batman_22.txt")
+batman_22 <- tratamento(read.delim("batman_22.txt")) %>% mutate(bd = "batman_22")
 ```
 
 ```{r}
@@ -110,10 +139,65 @@ graf_sent <- imdb %>%
   theme_classic()
 ```
 
+#### Results
+
+The evolution of the sentiment analysis for batman films is presented in the graph below. It indicates that:
+
+* The releases in the late 80s and 90s are much more positive than the other films.
+
+* From Christopher Nolan's trilogy, The Dark Knight have a much more positive atmosphere - maybe because of Heath Leadger's Joker?
+
+* In the last ten years, there was a light growth of the overall sentiment. In other words, the sentiments from The Dark Knight Rises (2012) and The Batman(2022) are pretty much alike.
+
 ```{r}
 #Imprimindo gráfico
-graf_sent
+graf_sent %>%
+  ggplotly()
 ```
 
 
-Chegamos até aqui.
+```{r}
+batman <- batman_66 %>% 
+  rbind(batman_89) %>% 
+  rbind(batman_92) %>% 
+  rbind(batman_95) %>% 
+  rbind(batman_97) %>%
+  rbind(batman_05) %>% 
+  rbind(batman_08) %>%
+  rbind(batman_12) %>%
+  rbind(batman_22)
+```
+
+```{r}
+palavras_usadas <- batman %>% 
+  group_by(bd, word) %>% 
+  summarize(sentiment_magnitude = mean(value, na.rm=T),
+            n = n()) %>% 
+  arrange(-n) %>% 
+  arrange(bd) %>% 
+  mutate(aux_1 = row_number()) %>% 
+  filter(aux_1<=15) %>% 
+  left_join(imdb, by=("bd")) %>% 
+  mutate(type = case_when(sentiment_magnitude < 0 ~ "negative",
+                          TRUE ~ "positive"))
+```
+
+```{r}
+graph_2 <- palavras_usadas %>% 
+  ggplot(aes(x = aux_1, y = n, frame = year, fill= type, color = type))+
+  geom_point() +
+  xlab("Number of occurences")+
+  ylab("Fifteen most common words")+
+  scale_x_continuous(breaks = seq(1, 15, 1), lim = c(1, 15))+
+  theme_classic()+
+  theme(legend.position='none')
+```
+
+```{r}
+graph_2 %>% 
+  ggplotly()
+```
+
+
+
+[Affin lexicon]: http://www2.imm.dtu.dk/pubdb/pubs/6010-full.html
