@@ -1,0 +1,175 @@
+---
+title: The evolution of Harry Potter books
+author: ''
+date: '2022-04-13'
+slug: []
+categories:
+  - R
+tags:
+  - R Markdown
+  - sentiment
+  - books
+image: img/portfolio/harry-potter.jpg
+showonlyimage: true
+weight: 0
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE, error=FALSE, warning=FALSE, message=FALSE)
+```
+
+*By Thais Baracat. April 8, 2022.* <p>
+
+Millenials grew up with a pretty much specific atmosphere. Mostly certain, the kids from the 00s are proud to have read J. K. Rolling's Harry Potter. But the question is: did the series grew up with these kids too? Let's find out if the series became more mature over the course of the books.
+
+```{r}
+#Libraries
+library("tidyverse")
+library("tidylog")
+library("tidytext")
+library("plotly")
+library("harrypotter")
+```
+
+```{r}
+#Títulos dos livros
+titles <- c("Philosopher's Stone", "Chamber of Secrets", "Prisoner of Azkaban",
+            "Goblet of Fire", "Order of the Phoenix", "Half-Blood Prince",
+            "Deathly Hallows")
+
+```
+
+```{r}
+#Abrindo os livros
+books <- list(philosophers_stone, chamber_of_secrets, prisoner_of_azkaban,
+              goblet_of_fire, order_of_the_phoenix, half_blood_prince,
+              deathly_hallows)
+```
+
+```{r}
+#Juntando BD e unnest_tokens
+##Each book is an array in which each value in the array is a chapter 
+series <- tibble()
+for(i in seq_along(titles)) {
+  
+  temp <- tibble(chapter = seq_along(books[[i]]),
+                  text = books[[i]]) %>%
+    unnest_tokens(word, text) %>%
+    ##Here we tokenize each chapter into words
+    mutate(id=i,
+           book = titles[i]) %>%
+    select(book, everything())
+  
+  series <- rbind(series, temp)
+}
+# set factor to keep books in order of publication
+series$book <- factor(series$book, levels = rev(titles))
+```
+
+```{r}
+#Análise de sentimentos global
+sentiment_analysis_global <- series %>%
+  inner_join(get_sentiments("afinn")) %>%
+  group_by(id,book) %>% 
+  summarize(sentiment = mean(value, na.rm=T)) %>% 
+  mutate(name = paste(id,"-", book))
+```
+
+#### Data
+
+Data used was available through the "harrypotter" library. More information can be found in [this repository].
+
+
+#### Overall sentiment
+
+When it comes to the overall sentiment of each book, Philosopher's Stone and Half-Blood Prince are the ones that contains mostly positive words. The darkest book is definately the Deathly Hallows. This can coroborate to our hypothesis that the aesthetic of the books were shifting from the a childish atmosphere to a more mature context.
+
+```{r}
+#Imprimindo gráfico
+
+plot_ly(sentiment_analysis_global,
+        x = ~name, 
+        y = ~sentiment,
+        type = 'bar',
+        hovertemplate = ~paste('</br> Book: ', book,
+                      '</br> Sentiment: ', round(sentiment,2))
+) %>% 
+  layout(plot_bgcolor = "#e5ecf6", 
+         xaxis = list(title = 'Book',tickangle = 270), 
+         yaxis = list(title = 'Overall sentiment'))
+```
+
+
+
+#### Sentiment along the book
+
+And what about the construction of the narrative? Does the author have a tendency to deepen the narrative in a certain point of the story? The folowing graph demonstrates that, except for the Deathly Hallows, the books have its darkest point in the last chapters, after 80% of the book. 
+
+```{r}
+#Análise de sentimentos capítulos
+sentiment_analysis_chapter <- series %>%
+  inner_join(get_sentiments("afinn")) %>%
+  group_by(id,book,chapter) %>% 
+  summarize(sentiment = mean(value, na.rm=T)) %>% 
+  mutate(name = paste(id," - ", book),
+         num_chapters = max(chapter),
+         percentage = 100*chapter/num_chapters)
+```
+
+```{r}
+#Imprimindo gráfico
+
+plot_ly(sentiment_analysis_chapter,
+        x = ~percentage, 
+        y = ~sentiment, 
+        frame= ~name,
+        type = 'scatter', 
+        mode = 'lines+markers'
+) %>% 
+  layout(plot_bgcolor = "#e5ecf6", 
+         xaxis = list(title = 'Percentage of book'), 
+         yaxis = list(title = 'Sentiment'))
+```
+
+
+<p>
+Have you ever heard of the Hero's Journey? It is a form of narrative where the main character is called to an adventure, goes through a rough patch at a certain point, proves to be resourceful and victorious, and returns home. The picture below illustrates the steps of the Hero's Journey. 
+
+![*Hero's Journey. Illustration from Florence Jimenez Otto*][1]
+
+<p>
+Pretty much in line with the probable dispair found in the last few chapters of the book, right? Usually, this part is filled with tension, and can be the most surprising part of a book. Following this tension, there is a general sense of recompensation, derived from the victorious act of "courage" from the hero. This aspect can also be found in the Harry Potter series.
+
+#### Hogwarts houses
+
+Over the course of the books, how was the appearance of each of the houses? The following graph illustrates the predominance of the Gryffindor House for the series - as expected -, except for the Chamber of Secrets, where the term Slytherin has the most count. I was also surprised to find out that the last book has low references to Hufflepuff. 
+
+```{r}
+houses <- series %>% 
+  filter(word == "gryffindor" | word == "hufflepuff" | word == "ravenclaw" | word == "slytherin") %>% 
+  group_by(id, book, word) %>% 
+  tally() %>% 
+  mutate(name = paste(id,"-", book),
+         percentage = 100*n/sum(n))
+```
+
+```{r}
+plot_ly(houses,
+        x = ~name, 
+        y = ~n,
+        type = 'bar',
+        color = ~word,
+        colors=c("#670001","#cc9900","#002e5f","#013300"),
+        hovertemplate = ~paste('</br> House: ', word,
+                               '</br> Count: ', n,
+                               '</br> Percentage: ', round(percentage,2))
+) %>% 
+  layout(plot_bgcolor = "#e5ecf6", 
+         xaxis = list(title = 'Book'), 
+         yaxis = list(title = 'Count'),
+         barmode = 'stack')
+```
+
+
+[this repository]: https://github.com/bradleyboehmke/harrypotter
+[1]: /img/portfolio/hero-journey.png

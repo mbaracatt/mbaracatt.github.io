@@ -6,7 +6,17 @@
     <description>Recent content in R on THAIS BARACAT</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The evolution of Harry Potter books</title>
+      <link>/post/2022-04-13-harry-potter/</link>
+      <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022-04-13-harry-potter/</guid>
+      <description>By Thais Baracat. April 8, 2022.Millenials grew up with a pretty much specific atmosphere. Mostly certain, the kids from the 00s are proud to have read J. K. Rolling’s Harry Potter. But the question is: did the series grew up with these kids too? Let’s find out if the series became more mature over the course of the books.
+DataData used was available through the “harrypotter” library.</description>
+    </item>
+    
     <item>
       <title>Are Batman movies darker than they used to be?</title>
       <link>/post/2022-04-08-batman/</link>
