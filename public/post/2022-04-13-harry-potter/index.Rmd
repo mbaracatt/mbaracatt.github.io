@@ -18,7 +18,7 @@ weight: 0
 knitr::opts_chunk$set(echo=FALSE, error=FALSE, warning=FALSE, message=FALSE)
 ```
 
-*By Thais Baracat. April 8, 2022.* <p>
+*By Thais Baracat. April 13, 2022.* <p>
 
 Millenials grew up with a pretty much specific atmosphere. Mostly certain, the kids from the 00s are proud to have read J. K. Rolling's Harry Potter. But the question is: did the series grew up with these kids too? Let's find out if the series became more mature over the course of the books.
 
@@ -128,7 +128,8 @@ plot_ly(sentiment_analysis_chapter,
 ) %>% 
   layout(plot_bgcolor = "#e5ecf6", 
          xaxis = list(title = 'Percentage of book'), 
-         yaxis = list(title = 'Sentiment'))
+         yaxis = list(title = 'Sentiment'),
+         showlegend = FALSE)
 ```
 
 
@@ -160,14 +161,14 @@ plot_ly(houses,
         type = 'bar',
         color = ~word,
         colors=c("#670001","#cc9900","#002e5f","#013300"),
-        hovertemplate = ~paste('</br> House: ', word,
-                               '</br> Count: ', n,
+        hovertemplate = ~paste('</br> Count: ', n,
                                '</br> Percentage: ', round(percentage,2))
 ) %>% 
   layout(plot_bgcolor = "#e5ecf6", 
          xaxis = list(title = 'Book'), 
          yaxis = list(title = 'Count'),
-         barmode = 'stack')
+         barmode = 'stack',
+         legend=list(title=list(text='<b> Hograts Houses </b>')))
 ```
 
 
