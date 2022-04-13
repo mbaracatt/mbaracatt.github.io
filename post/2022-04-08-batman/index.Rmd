@@ -126,18 +126,6 @@ sentimentos <- tibble(bd,sent)
 imdb <- imdb %>% inner_join(sentimentos, by="bd")
 ```
 
-```{r}
-#Gerando grafico
-graf_sent <- imdb %>%
-  ggplot()+
-  geom_hline(yintercept=0, lty=2, color="gray")+
-  geom_line(aes(x=year,y=sent)) +
-  geom_point(aes(x=year,y=sent)) +
-  xlab("Year") +
-  ylab("Sentiment") +
-  scale_x_continuous(breaks = seq(1965, 2025, 5), lim = c(1965, 2025))+
-  theme_classic()
-```
 
 #### Results
 
@@ -149,10 +137,22 @@ The evolution of the sentiment analysis for batman films is presented in the gra
 
 * In the last ten years, there was a light growth of the overall sentiment. In other words, the sentiments from The Dark Knight Rises (2012) and The Batman(2022) are pretty much alike.
 
+
 ```{r}
-#Imprimindo gráfico
-graf_sent %>%
-  ggplotly()
+plot_ly(imdb %>% arrange(year)
+        ,x=~year
+        ,y=~sent
+        ,type = 'scatter'
+        ,mode = 'lines+markers'
+        ,hoverinfo = 'text'
+        ,text = ~paste('</br> Film: ', title,
+                      '</br> Year: ', year,
+                      '</br> Sentiment: ', round(sent,2))
+) %>% 
+  layout(xaxis = list(title = 'Year'), 
+         font=t, 
+         plot_bgcolor = "#e5ecf6",
+         yaxis = list(title = 'Sentiment'))
 ```
 
 
@@ -182,21 +182,26 @@ palavras_usadas <- batman %>%
                           TRUE ~ "positive"))
 ```
 
-```{r}
-graph_2 <- palavras_usadas %>% 
-  ggplot(aes(x = aux_1, y = n, frame = year, fill= type, color = type))+
-  geom_point() +
-  xlab("Number of occurences")+
-  ylab("Fifteen most common words")+
-  scale_x_continuous(breaks = seq(1, 15, 1), lim = c(1, 15))+
-  theme_classic()+
-  theme(legend.position='none')
-```
+The fifteen most common words over the years are presented in the graph below. Since Batman Begins (2005), the most common word is "like", which has a positive connotation according to the Afinn lexicon. The word "good" is always on the top 5 of the most common words since 1966.
 
 ```{r}
-graph_2 %>% 
-  ggplotly()
+plot_ly(palavras_usadas
+        ,x=~aux_1
+        ,y=~n
+        ,frame=~year
+        ,color = ~type
+        ,type = 'bar'
+        ,text = ~word
+        ,texttemplate = '%{text:.}', textposition = 'outside'
+        ,colors = c("#be4d25", "#2596be")
+) %>% 
+  layout(xaxis = list(title = 'Fifteen most common words'), 
+         font=t, 
+         plot_bgcolor = "#e5ecf6",
+         yaxis = list(title = 'Count'), 
+         legend = list(title=list(text='Sentiment')))
 ```
+
 
 
 
