@@ -9,7 +9,7 @@ tags:
   - R Markdown
   - film
   - sentiment
-image: img/portfolio/batman.jpg
+image: img/portfolio/batman.png
 showonlyimage: true
 weight: 0
 ---
@@ -132,9 +132,7 @@ imdb <- imdb %>% inner_join(sentimentos, by="bd")
 The evolution of the sentiment analysis for batman films is presented in the graph below. It indicates that:
 
 * The releases in the late 80s and 90s are much more positive than the other films.
-
 * From Christopher Nolan's trilogy, The Dark Knight have a much more positive atmosphere - maybe because of Heath Leadger's Joker?
-
 * In the last ten years, there was a light growth of the overall sentiment. In other words, the sentiments from The Dark Knight Rises (2012) and The Batman(2022) are pretty much alike.
 
 
@@ -182,7 +180,7 @@ palavras_usadas <- batman %>%
                           TRUE ~ "positive"))
 ```
 
-The fifteen most common words over the years are presented in the graph below. Since Batman Begins (2005), the most common word is "like", which has a positive connotation according to the Afinn lexicon. The word "good" is always on the top 5 of the most common words since 1966.
+The fifteen most common words over the years are presented in the graph below. Since Batman Begins (2005), the most common word is "like", which has a positive connotation according to the Afinn lexicon. The word "good" is always on the top 5 of the most common words since 1966. The negative words are usually: death/dead, kill, criminal and hell.
 
 ```{r}
 plot_ly(palavras_usadas
