@@ -14,12 +14,10 @@ params:
       url: post/
     - name: About
       url: about/
-    - name: CV
-      url: vitae/
     - name: Get in touch
       url: contact/
   sidebarAbout:
-    - I am an engineer who loves music, cinema and arts.
+    - I am an engineer interested in data analysis and data science. In my free time, I love to be involved with arts.
     - Currently based in São Paulo, Brazil.
   social:
     email: mbaracatt@gmail.com
