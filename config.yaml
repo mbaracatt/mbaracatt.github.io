@@ -19,7 +19,7 @@ params:
     - name: Get in touch
       url: contact/
   sidebarAbout:
-    - I am just an engineer who loves music, cinema and arts.
+    - I am an engineer who loves music, cinema and arts.
     - Currently based in São Paulo, Brazil.
   social:
     email: mbaracatt@gmail.com
