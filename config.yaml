@@ -14,6 +14,8 @@ params:
       url: post/
     - name: About
       url: about/
+    - name: CV
+      url: vitae/      
     - name: Get in touch
       url: contact/
   sidebarAbout:
