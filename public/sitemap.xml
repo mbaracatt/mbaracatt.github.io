@@ -2,9 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/vitae/</loc>
-    <lastmod>2022-07-25T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>/tags/books/</loc>
     <lastmod>2022-04-13T00:00:00+00:00</lastmod>
   </url><url>
@@ -41,7 +38,13 @@
     <loc>/about/</loc>
     <lastmod>2022-04-06T19:04:00+05:30</lastmod>
   </url><url>
+    <loc>/cv/</loc>
+    <lastmod>2022-04-06T19:04:00+05:30</lastmod>
+  </url><url>
     <loc>/contact/</loc>
     <lastmod>2016-11-06T13:00:25+05:30</lastmod>
+  </url><url>
+    <loc>/vitae/</loc>
+    <priority>0</priority>
   </url>
 </urlset>

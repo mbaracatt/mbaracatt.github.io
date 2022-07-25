@@ -12,10 +12,8 @@ params:
     - home: yes
       name: Home
       url: post/
-    - name: About
+    - name: Me and my CV
       url: about/
-    - name: Vitae
-      url: vitae/      
     - name: Get in touch
       url: contact/
   sidebarAbout:

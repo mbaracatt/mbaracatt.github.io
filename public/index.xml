@@ -8,29 +8,6 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 13 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My background</title>
-      <link>/vitae/</link>
-      <pubDate>Mon, 25 Jul 2022 00:00:00 +0000</pubDate>
-      
-      <guid>/vitae/</guid>
-      <description>ExperienceENGIMIND CONSULTORES
-Civil Engineer
-Mar/19 - Present
-Involved in highways, railways, airports and public and private transportation projects.
-Engineering Analyst
-Set/17 - Mar/19
-Involved in highways, railways, ports and public transportation projects.
-UNIVERSITY OF SÃO PAULO
-Teaching assistant for R language, FFLCH-USP
-Mar/21 - Jul/21
-Introduction of data analysis, programming and visualization for social sciences, in R language.
-FCTH
-Intern
-Dec/16 - Aug/17
-Ponta da Madeira Port (Vale, 2017): sedimentation analysis, ship tracking, dredge productivity.</description>
-    </item>
-    
-    <item>
       <title>The evolution of Harry Potter books</title>
       <link>/post/2022-04-13-harry-potter/</link>
       <pubDate>Wed, 13 Apr 2022 00:00:00 +0000</pubDate>
@@ -47,6 +24,29 @@ DataData used was available through the “harrypotter” library.</description
       
       <guid>/post/2022-04-08-batman/</guid>
       <description>By Thais Baracat. April 8, 2022.We can all agree that Batman is the darkest superhero of them all. But after watching the brand-new batman movie, starring Robert Pattinson and Zöe Kravitz, I caught myself thinking if the franchise movies were getting emotionally darker - or was it just the noir aesthetics? In order to find out, I have selected a collection of batman movies and proceeded with a sentiment analysis of the dialogues held in each film.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/vitae/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/vitae/</guid>
+      <description>Experience ENGIMIND CONSULTORES
+Civil Engineer
+Mar/19 - Present
+Involved in highways, railways, airports and public and private transportation projects.
+Engineering Analyst
+Set/17 - Mar/19
+Involved in highways, railways, ports and public transportation projects.
+UNIVERSITY OF SÃO PAULO
+Teaching assistant for R language, FFLCH-USP
+Mar/21 - Jul/21
+Introduction of data analysis, programming and visualization for social sciences, in R language.
+FCTH
+Intern
+Dec/16 - Aug/17
+Ponta da Madeira Port (Vale, 2017): sedimentation analysis, ship tracking, dredge productivity.</description>
     </item>
     
   </channel>
