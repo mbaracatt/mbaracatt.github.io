@@ -14,7 +14,7 @@ params:
       url: post/
     - name: About
       url: about/
-    - name: CV
+    - name: Vitae
       url: vitae/      
     - name: Get in touch
       url: contact/
