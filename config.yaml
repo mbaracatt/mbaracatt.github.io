@@ -10,11 +10,13 @@ params:
   email: mbaracatt@gmail.com
   navlinks:
     - home: yes
-      name: Home
+      name: Brazil
       url: post/
+    - name: Arts
+      url: arts/
     - name: Me and my CV
       url: about/
-    - name: Get in touch
+    - name: Contact
       url: contact/
   sidebarAbout:
     - I am an engineer interested in data analysis and data science. In my free time, I love to be involved with arts.
