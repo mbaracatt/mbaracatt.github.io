@@ -9,9 +9,6 @@ tags:
   - R Markdown
   - sentiment
   - books
-image: img/portfolio/harry-potter.jpg
-showonlyimage: true
-weight: 0
 ---
 
 ```{r, echo=FALSE}
