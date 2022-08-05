@@ -10,10 +10,8 @@ params:
   email: mbaracatt@gmail.com
   navlinks:
     - home: yes
-      name: Brazil
+      name: Home
       url: post/
-    - name: Arts
-      url: arts/
     - name: Me and my CV
       url: about/
     - name: Contact
