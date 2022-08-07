@@ -11,9 +11,15 @@ params:
   navlinks:
     - home: yes
       name: Home
-      url: post/
-    - name: Me and my CV
       url: about/
+    - name: Engineering
+      url: engineering/
+    - name: Arts
+      url: arts/
+    - name: Argumentative
+      url: arg/
+    - name: CV
+      url: vitae/
     - name: Contact
       url: contact/
   sidebarAbout:
