@@ -13,7 +13,7 @@ params:
       name: Home
       url: about/
     - name: Engineering
-      url: engineering/
+      url: post/
     - name: Arts
       url: arts/
     - name: Argumentative
@@ -32,3 +32,8 @@ params:
     linkedin: https://www.linkedin.com/in/thais-malta-baracat-2584a4127/
   style: blue
   
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
