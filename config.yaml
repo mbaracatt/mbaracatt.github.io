@@ -13,7 +13,7 @@ params:
       name: Home
       url: about/
     - name: Engineering
-      url: post/
+      url: engineering/
     - name: Arts
       url: arts/
     - name: Argumentative
