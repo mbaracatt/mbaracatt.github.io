@@ -9,6 +9,16 @@
     <lastBuildDate>Thu, 04 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="/categories/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Delay and Cancels - Flights to/from Brazil</title>
+      <link>/engineering/2022-08-04-delay/</link>
+      <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/engineering/2022-08-04-delay/</guid>
+      <description>By Thais Baracat. August 4, 2022.IntroductionWhich companies are the ones who cancels most flights or have most delays in Brazilian flights? Which are the airports with most delays? In order to find out, I have analysed data from the public data provided by ANAC - Agência Nacional de Aviação Civil, as detailed below.
+DataThe data used in this activity is from the 2021 year.</description>
+    </item>
+    
+    <item>
+      <title>Delay and Cancels - Flights to/from Brazil</title>
       <link>/post/2022-08-04-delay/</link>
       <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
       
@@ -57,10 +67,10 @@ DataData used was available through the “harrypotter” library.</description
     
     <item>
       <title>The importance of being earnest in English</title>
-      <link>/post/2017-03-27-the-importance-of-being-earnest-in-english/</link>
+      <link>/arg/2017-03-27-the-importance-of-being-earnest-in-english/</link>
       <pubDate>Sat, 05 Aug 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/2017-03-27-the-importance-of-being-earnest-in-english/</guid>
+      <guid>/arg/2017-03-27-the-importance-of-being-earnest-in-english/</guid>
       <description>&lt;p&gt;&lt;em&gt;By Thais Baracat. March 27, 2017&lt;/em&gt; &lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     
