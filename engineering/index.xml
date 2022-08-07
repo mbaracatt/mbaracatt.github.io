@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engineerings on THAIS BARACAT</title>
+    <link>/engineering/</link>
+    <description>Recent content in Engineerings on THAIS BARACAT</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 04 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="/engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Delay and Cancels - Flights to/from Brazil</title>
+      <link>/engineering/2022-08-04-delay/</link>
+      <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/engineering/2022-08-04-delay/</guid>
+      <description>By Thais Baracat. August 4, 2022.IntroductionWhich companies are the ones who cancels most flights or have most delays in Brazilian flights? Which are the airports with most delays? In order to find out, I have analysed data from the public data provided by ANAC - Agência Nacional de Aviação Civil, as detailed below.
+DataThe data used in this activity is from the 2021 year.</description>
+    </item>
+    
+  </channel>
+</rss>
